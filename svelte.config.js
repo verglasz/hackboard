@@ -9,8 +9,8 @@ const config = {
 
   kit: {
     adapter: adapter({
-      pages: 'ghpages',
-      assets: 'ghpages',
+      pages: 'docs',
+      assets: 'docs',
     }),
   },
 };
