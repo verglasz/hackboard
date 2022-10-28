@@ -62,7 +62,7 @@
     },
     name: {
       sorted: -1,
-      fn: (p) => p.name,
+      fn: (p) => p.name.toUpperCase(),
     },
     flags: {
       sorted: 1,
