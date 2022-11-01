@@ -34,7 +34,20 @@
       return { ...p, points, hintCount };
     })
     .sort((a, b) => rank(b) - rank(a) + a.name.localeCompare(b.name) / 1e5)
-    .map((p, i) => ({ rank: i + 1, ...p }));
+    .reduce(
+      (acc, curr) => {
+        if (rank(curr) < acc.score) {
+          acc.score = rank(curr);
+          acc.rank += acc.cnt;
+          acc.cnt = 1;
+        } else {
+          acc.cnt += 1;
+        }
+        acc.pl.push({ rank: acc.rank, ...curr });
+        return acc;
+      },
+      { rank: 1, cnt: 0, score: +Infinity, pl: [] as ScoredPerson[] },
+    ).pl;
 
   const resort = (property: string) => {
     const sorter = sorting[property];
